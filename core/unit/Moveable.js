@@ -1,10 +1,10 @@
-import DirectionEnum from '../enums/DirectionEnum';
+import DirectionEnum from '../constants/DirectionConstants;
 
 class Moveable {
   constructor(x,y, direction,region) {
     this.x = x;
     this.y = y;
-    this.direction = DirectionEnum[direction];
+    this.direction = DirectionConstants[direction];
     this.region = region;
   }
 
@@ -13,13 +13,13 @@ class Moveable {
   }
 
   move(x,y) {
-    if(this.region.isMoveAccess(x,y)) {
+    if(this.region.canMove(x,y)) {
       this.x = x;
       this.y = y;
     }
   }
 
-  turnDirection(direction) {
+  turn(direction) {
     this.direction = direction;
   }
 
