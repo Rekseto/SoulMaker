@@ -5,7 +5,11 @@ class Region {
     this.map = file; // TODO map parser
   }
 
-  isMoveAccess(x,y) {
-    return true; // TODO checking block
+  canMove(x,y) {
+    if(this.x >= x && this.y >= y) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
