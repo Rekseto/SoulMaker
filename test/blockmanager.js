@@ -19,5 +19,25 @@ describe('BlockManager', function() {
       .then(res => done("Error has been not occured"))
       .catch(err => done())
     });
+
+    it('size should increase', function(done) {
+      const blocksPath = path.resolve('./test/blocks');
+
+      const blockManager = new BlockManager();
+      const oldSize = blockManager.blocks.size;
+      blockManager.loadBlocks(blocksPath)
+
+      blockManager.loadBlocks(blocksPath)
+      .then(res => {
+        if(blockManager.blocks.size > oldSize) {
+          done()
+        } else {
+          done(new Error('Size didnt increase'));
+        }
+      })
+      .catch(err => {
+        done(err)
+      });
+    });
   });
 });
