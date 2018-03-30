@@ -3,6 +3,7 @@ class Region {
     this.x = x;
     this.y = y;
     this.map = file; // TODO map parser
+    this.logicMap = file;
   }
 
   canMove(x,y) {
@@ -12,4 +13,9 @@ class Region {
       return false;
     }
   }
+
+
 }
+
+
+export default Region;
