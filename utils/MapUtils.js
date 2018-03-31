@@ -1,12 +1,5 @@
-const inRange = (x,y,targetX, targetY, triggerRangeX,triggerRangeY) => {
-  if(targetX >= x - triggerRangeX && targetX <= x + triggerRangeX) {
-    if(targetY >= y - triggerRangeY && targetY <= y + triggerRangeY) {
-      return true;
-    }
-  }
-
-  return false;
+const inRange = (target,el) => {
+ return Math.sqrt(Math.pow(target.x - el.x, 2) + Math.pow(target.y - el.y, 2))
 }
-
 
 export default {inRange};
