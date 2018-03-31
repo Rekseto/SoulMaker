@@ -1,9 +1,13 @@
+import {parseMap} from "../../utils/MapParser";
+
+
 class Region {
-  constructor(x,y,file) {
-    this.x = x;
-    this.y = y;
-    this.map = file; // TODO map parser
-    this.logicMap = file;
+  constructor() {
+
+  }
+
+  async loadRegion(file) {
+    this.map = await parseMap(file);
   }
 
   canMove(x,y) {
