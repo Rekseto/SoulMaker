@@ -26,13 +26,31 @@ describe('BlockManager', function() {
       const blockManager = new BlockManager();
       const oldSize = blockManager.blocks.size;
       blockManager.loadBlocks(blocksPath)
-
-      blockManager.loadBlocks(blocksPath)
       .then(res => {
         if(blockManager.blocks.size > oldSize) {
           done()
         } else {
           done(new Error('Size didnt increase'));
+        }
+      })
+      .catch(err => {
+        done(err)
+      });
+    });
+  });
+
+
+  describe('#getBlock' , function() {
+    it("should return block which is moveable (GRASS_BLOCK)", function (done) {
+      const blocksPath = path.resolve('./test/blocks');
+      const blockManager = new BlockManager();
+
+      blockManager.loadBlocks(blocksPath)
+      .then(res => {
+        if(blockManager.getBlock(1).moveable === true) {
+          done();
+        } else {
+          done(new Error("Found bad data at block with id 1"));
         }
       })
       .catch(err => {
