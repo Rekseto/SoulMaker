@@ -1,6 +1,13 @@
 import EventEmitter from "events"
 
 class EventManager extends EventEmitter {
+  constructor () {
+    super();
+
+    process.nextTick(() => {
+      this.emit("ready");
+    });
+  }
 }
 
-export const EventInstance = new EventManager()
+export default new EventManager()
