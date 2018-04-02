@@ -1,5 +1,0 @@
-class Map {
-  constructor(file,) {
-
-  }
-}
