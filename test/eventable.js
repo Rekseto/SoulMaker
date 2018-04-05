@@ -20,7 +20,7 @@ describe("EventAble", function () {
       const player = new Player(10,10,region ,"FORWARD",  ["MacBook"]);
       const objListener = new ListenerObject();
       let tested = false;
-      objListener.emitter.on('MoveEvent' , function (e) {
+      objListener.emitter.pushToQueue('MoveEvent' , function (e) {
         tested = true;
       })
 
