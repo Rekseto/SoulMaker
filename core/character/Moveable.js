@@ -21,6 +21,13 @@ class Moveable {
     }
   }
 
+  moveWithoutEvent (x, y) {
+    if (this.region.canMove(x, y)) {
+      this.x = x;
+      this.y = y;
+    }
+  }
+
   turn (direction) {
     this.direction = direction;
   }
