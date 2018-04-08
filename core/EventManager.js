@@ -1,26 +1,10 @@
 import EventEmitter from "events"
-import EventQueue from "../utils/EventQueue";
 
 class EventManager extends EventEmitter {
   constructor () {
     super();
-
+    this.length = 0;
     this.runningEvent = false;
-
-    process.nextTick(() => {
-      this.emit("ready");
-    });
-
-    this.queue = new EventQueue();
-
-    this.on("EventFinishes", function () {
-      if (this.queue.getQueue().length === 0) {
-        this.emit("EventQueueEmpty");
-      } else {
-        this.runningEvent = true;
-        this.queue.dequeue().runEvent();
-      }
-    });
 
     this.on("EventQueueEmpty", function () {
       this.runningEvent = false;
@@ -28,14 +12,34 @@ class EventManager extends EventEmitter {
     })
   }
 
-  pushToQueue (event) {
-    if (!this.runningEvent) {
-      this.runningEvent = true;
-      event.runEvent();
+  pushEvent (catcher, additional = {}) {
+    if (this.runningEvent) {
+      const node = {item: {catcher, additional}};
+      if (this.last) {
+        this.last = this.last.next = node;
+      } else {
+        this.last = this.first = node;
+      }
+      this.length++;
     } else {
-      this.queue.enqueue();
+      catcher.runEvent(additional).then(res => {
+        this.eventDone();
+      });
+    }
+  }
+
+  eventDone () {
+    if (this.length === 0) this.emit("EventQueueEmpty");
+    let node = this.first;
+    if (node) {
+      this.first = node.next;
+      if (!(--this.length)) {
+        this.last = undefined;
+      }
+      node.catcher.runEvent(node.additional).then(res => {
+        this.eventDone();
+      })
     }
   }
 }
-
 export default new EventManager()
