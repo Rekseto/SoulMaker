@@ -1,7 +1,7 @@
-import EventManager from "../EventManager";
+import CatcherManager from "../CatcherManager";
 
 export default class Eventable {
   constructor () {
-    this.emitter = EventManager;
+    this.emitter = CatcherManager;
   }
 }

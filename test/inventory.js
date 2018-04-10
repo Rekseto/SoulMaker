@@ -21,7 +21,7 @@ describe('Inventory', function() {
     it('should return "You recived ITEM_ID" when inventory has space', function() {
       const inventory = new Inventory(1, []);
 
-      assert.equal(inventory.addItem("ITEM_ID"), "You recived ITEM_ID");
-    });    
+      assert.equal(inventory.addItem("ITEM_ID"), "Otrzymałeś ITEM_ID");
+    });
   });
 });
