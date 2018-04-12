@@ -6,7 +6,7 @@ const expect = chai.expect;
 const assert = chai.assert;
 const request = chai.request;
 
-import {parseMap} from '../utils/MapParser';
+import {parseMap} from '../core/parsers/MapParser';
 
 
 describe('MapParser', function() {
@@ -18,7 +18,7 @@ describe('MapParser', function() {
       }).catch(err => done(err))
     });
 
-    
+
     it('should throw error when wrong path given ', function(done) {
       const regionsPath = path.resolve('./wrong/path');
       parseMap(regionsPath).then(res => {
