@@ -13,6 +13,11 @@ class Character extends aggregation(Moveable, Eventable) {
   addListener (event, fnc) {
     this.emitter.on(event, fnc);
   }
+
+  giveItem (target, item) {
+    target.inventory.addItem(item);
+    this.inventory.removeItem(item.id, 1);
+  }
 }
 
 export default Character;

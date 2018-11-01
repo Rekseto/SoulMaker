@@ -43,8 +43,10 @@
     "babel-eslint": "^8.2.1"
   },
   "dependencies": {
+    "@dagrejs/graphlib": "^2.1.4",
     "colors": "^1.2.1",
     "line-reader": "^0.4.0",
-    "prompt": "^1.0.0"
+    "prompt": "^1.0.0",
+    "tiny-queue": "^0.2.1"
   }
 }

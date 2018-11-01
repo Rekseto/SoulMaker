@@ -1,7 +1,7 @@
 class Interactable {
-  constructor(possibleInteractions) {
+  constructor (possibleInteractions) {
     this.possibleInteractions = possibleInteractions;
   }
-
-  
 }
+
+export default Interactable;
