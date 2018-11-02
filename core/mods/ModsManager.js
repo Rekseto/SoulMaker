@@ -1,5 +1,0 @@
-class ModsManager {
-  constructor (path) {
-
-  }
-}
